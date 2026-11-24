@@ -22,6 +22,7 @@ namespace PCWatch.Core.Tests
             TestRussianFormat();
             TestRecommendations();
             TestProcessSafety();
+            _failures += CleanupTests.Run();
 
             Console.WriteLine();
             Console.WriteLine(_failures == 0 ? "Все тесты пройдены." : "Провалено тестов: " + _failures);

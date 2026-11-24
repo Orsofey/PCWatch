@@ -48,6 +48,7 @@ namespace PCWatch
                 CreateTray();
                 _window.Show();
                 OpenWindowsFromArguments(Environment.GetCommandLineArgs());
+                OpenCleanupFromArguments(Environment.GetCommandLineArgs());
             }
             catch (Exception ex)
             {
@@ -94,6 +95,17 @@ namespace PCWatch
                 _viewModel.ShowStatus("Процесс с PID " + pid + " не найден");
             }
             catch (Exception ex) { LogError(ex); }
+        }
+
+        private void OpenCleanupFromArguments(string[] args)
+        {
+            foreach (string argument in args)
+            {
+                if (!String.Equals(argument, "--cleanup", StringComparison.OrdinalIgnoreCase)) continue;
+                _viewModel.NavigateCommand.Execute("cleanup");
+                _viewModel.Cleanup.ScanCommand.Execute(null);
+                return;
+            }
         }
 
         private void CreateTray()

@@ -264,6 +264,7 @@ namespace PCWatch.Core
         [DataMember] public bool StartWithWindows { get; set; }
         [DataMember] public bool AlertsEnabled { get; set; }
         [DataMember] public bool CsvLogging { get; set; }
+        [DataMember] public bool RecycleDownloads { get; set; }
         [DataMember] public string EmergencyHotkey { get; set; }
         [DataMember] public List<AlertRule> Alerts { get; set; }
         [DataMember] public List<string> HiddenRecommendations { get; set; }
@@ -275,6 +276,7 @@ namespace PCWatch.Core
             StartWithWindows = false;
             AlertsEnabled = true;
             CsvLogging = false;
+            RecycleDownloads = true;
             EmergencyHotkey = "Ctrl+Alt+F12";
             HiddenRecommendations = new List<string>();
             Alerts = DefaultAlerts();

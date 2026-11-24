@@ -4,6 +4,7 @@
     <conv:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
     <conv:AlertMetricConverter x:Key="AlertMetricConverter"/>
     <conv:WindowStateConverter x:Key="WindowStateConverter"/>
+    <BooleanToVisibilityConverter x:Key="BoolVisibility"/>
     <Color x:Key="BgColor">#0B1018</Color>
     <Color x:Key="SidebarColor">#0D141F</Color>
     <Color x:Key="CardColor">#131C29</Color>

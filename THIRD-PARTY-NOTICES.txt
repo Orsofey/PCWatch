@@ -36,3 +36,10 @@ System.Reflection.TypeExtensions, System.Runtime.CompilerServices.Unsafe,
 Microsoft.Diagnostics.NETCore.Client, System.Text.Json and transitive dependencies.
 
 No Resplendence / WhySoSlow code, drivers, images or resources are included.
+
+Roomy cleanup model and SafeFs/FileOps adaptations
+Copyright (c) 2026 krezio
+Project: https://github.com/krezio/roomy
+License: MIT (same terms as the MIT License above).
+Adapted areas: read-only cache categories, canonical-path and reparse-point guards,
+in-use-file skipping and confirmation-first cleanup. Roomy itself is not bundled.
