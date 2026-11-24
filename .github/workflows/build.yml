@@ -1,0 +1,23 @@
+name: Build and test
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: microsoft/setup-msbuild@v2
+      - name: Build, test and package
+        shell: powershell
+        run: .\build.ps1
+      - name: Upload portable ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: PCWatch-2.0.0
+          path: |
+            artifacts/release/PCWatch-2.0.0-win.zip
+            artifacts/release/PCWatch-2.0.0-win.zip.sha256
+          if-no-files-found: error

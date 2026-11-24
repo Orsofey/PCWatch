@@ -1,0 +1,42 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCWatch", "src\PCWatch\PCWatch.csproj", "{F0F0F434-56D5-4FC0-AF7B-8AE58E5B6E02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCWatch.Core", "src\PCWatch.Core\PCWatch.Core.csproj", "{A5A77E9A-0B9E-4D0E-8D91-2A78A80E9301}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCWatch.Core.Tests", "tests\PCWatch.Core.Tests\PCWatch.Core.Tests.csproj", "{57F1F720-CBDE-4FC7-9A48-BD2F40C00C01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCWatch.CollectorSmoke", "tests\PCWatch.CollectorSmoke\PCWatch.CollectorSmoke.csproj", "{4E4D62F6-72BC-4D54-9C10-27B79B76720B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCWatch.EtwSmoke", "tests\PCWatch.EtwSmoke\PCWatch.EtwSmoke.csproj", "{C34C43AF-BBD2-4E06-924C-83E1E48C6201}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F0F0F434-56D5-4FC0-AF7B-8AE58E5B6E02}.Debug|Any CPU.ActiveCfg = Debug|AnyCPU
+		{F0F0F434-56D5-4FC0-AF7B-8AE58E5B6E02}.Debug|Any CPU.Build.0 = Debug|AnyCPU
+		{F0F0F434-56D5-4FC0-AF7B-8AE58E5B6E02}.Release|Any CPU.ActiveCfg = Release|AnyCPU
+		{F0F0F434-56D5-4FC0-AF7B-8AE58E5B6E02}.Release|Any CPU.Build.0 = Release|AnyCPU
+		{A5A77E9A-0B9E-4D0E-8D91-2A78A80E9301}.Debug|Any CPU.ActiveCfg = Debug|AnyCPU
+		{A5A77E9A-0B9E-4D0E-8D91-2A78A80E9301}.Debug|Any CPU.Build.0 = Debug|AnyCPU
+		{A5A77E9A-0B9E-4D0E-8D91-2A78A80E9301}.Release|Any CPU.ActiveCfg = Release|AnyCPU
+		{A5A77E9A-0B9E-4D0E-8D91-2A78A80E9301}.Release|Any CPU.Build.0 = Release|AnyCPU
+		{57F1F720-CBDE-4FC7-9A48-BD2F40C00C01}.Debug|Any CPU.ActiveCfg = Debug|AnyCPU
+		{57F1F720-CBDE-4FC7-9A48-BD2F40C00C01}.Debug|Any CPU.Build.0 = Debug|AnyCPU
+		{57F1F720-CBDE-4FC7-9A48-BD2F40C00C01}.Release|Any CPU.ActiveCfg = Release|AnyCPU
+		{57F1F720-CBDE-4FC7-9A48-BD2F40C00C01}.Release|Any CPU.Build.0 = Release|AnyCPU
+		{4E4D62F6-72BC-4D54-9C10-27B79B76720B}.Debug|Any CPU.ActiveCfg = Debug|AnyCPU
+		{4E4D62F6-72BC-4D54-9C10-27B79B76720B}.Debug|Any CPU.Build.0 = Debug|AnyCPU
+		{4E4D62F6-72BC-4D54-9C10-27B79B76720B}.Release|Any CPU.ActiveCfg = Release|AnyCPU
+		{4E4D62F6-72BC-4D54-9C10-27B79B76720B}.Release|Any CPU.Build.0 = Release|AnyCPU
+		{C34C43AF-BBD2-4E06-924C-83E1E48C6201}.Debug|Any CPU.ActiveCfg = Debug|AnyCPU
+		{C34C43AF-BBD2-4E06-924C-83E1E48C6201}.Debug|Any CPU.Build.0 = Debug|AnyCPU
+		{C34C43AF-BBD2-4E06-924C-83E1E48C6201}.Release|Any CPU.ActiveCfg = Release|AnyCPU
+		{C34C43AF-BBD2-4E06-924C-83E1E48C6201}.Release|Any CPU.Build.0 = Release|AnyCPU
+	EndGlobalSection
+EndGlobal

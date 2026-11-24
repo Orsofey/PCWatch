@@ -1,1 +1,18 @@
+# Build and dependencies
+.vs/
+.tools/
+packages/
+artifacts/
+**/bin/
+**/obj/
+
+# Runtime files
 pcwatch_*.csv
+*.etl
+*.dmp
+
+# IDE
+*.user
+*.suo
+*.userosscache
+*.sln.docstates

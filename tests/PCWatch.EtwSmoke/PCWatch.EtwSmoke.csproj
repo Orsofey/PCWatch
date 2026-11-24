@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup><Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration><Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform><ProjectGuid>{C34C43AF-BBD2-4E06-924C-83E1E48C6201}</ProjectGuid><OutputType>Exe</OutputType><RootNamespace>PCWatch.EtwSmoke</RootNamespace><AssemblyName>PCWatch.EtwSmoke</AssemblyName><TargetFrameworkVersion>v4.8</TargetFrameworkVersion><LangVersion>5</LangVersion><FrameworkPathOverride Condition="Exists('$(SolutionDir)packages\Microsoft.NETFramework.ReferenceAssemblies.net48.1.0.3\build\.NETFramework\v4.8')">$(SolutionDir)packages\Microsoft.NETFramework.ReferenceAssemblies.net48.1.0.3\build\.NETFramework\v4.8</FrameworkPathOverride></PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' "><Optimize>true</Optimize><OutputPath>bin\Release\</OutputPath></PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' "><Optimize>false</Optimize><OutputPath>bin\Debug\</OutputPath><DefineConstants>DEBUG</DefineConstants></PropertyGroup>
+  <ItemGroup><Reference Include="System"/><Reference Include="System.Core"/><Reference Include="netstandard"/><Reference Include="Microsoft.Diagnostics.Tracing.TraceEvent"><HintPath>$(SolutionDir)packages\Microsoft.Diagnostics.Tracing.TraceEvent.4.0.2\lib\netstandard2.0\Microsoft.Diagnostics.Tracing.TraceEvent.dll</HintPath><Private>True</Private></Reference></ItemGroup>
+  <ItemGroup><Compile Include="Program.cs"/><Compile Include="..\..\src\PCWatch\Services\EtwAnalysisService.cs"><Link>EtwAnalysisService.cs</Link></Compile></ItemGroup>
+  <ItemGroup><ProjectReference Include="..\..\src\PCWatch.Core\PCWatch.Core.csproj"><Project>{A5A77E9A-0B9E-4D0E-8D91-2A78A80E9301}</Project><Name>PCWatch.Core</Name></ProjectReference></ItemGroup>
+  <ItemGroup><None Include="packages.config"/><None Include="App.config"/></ItemGroup><Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
+</Project>

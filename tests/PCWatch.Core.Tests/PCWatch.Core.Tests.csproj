@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup><Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration><Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform><ProjectGuid>{57F1F720-CBDE-4FC7-9A48-BD2F40C00C01}</ProjectGuid><OutputType>Exe</OutputType><RootNamespace>PCWatch.Core.Tests</RootNamespace><AssemblyName>PCWatch.Core.Tests</AssemblyName><TargetFrameworkVersion>v4.8</TargetFrameworkVersion><LangVersion>5</LangVersion><FrameworkPathOverride Condition="Exists('$(SolutionDir)packages\Microsoft.NETFramework.ReferenceAssemblies.net48.1.0.3\build\.NETFramework\v4.8')">$(SolutionDir)packages\Microsoft.NETFramework.ReferenceAssemblies.net48.1.0.3\build\.NETFramework\v4.8</FrameworkPathOverride></PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' "><Optimize>true</Optimize><OutputPath>bin\Release\</OutputPath></PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' "><Optimize>false</Optimize><OutputPath>bin\Debug\</OutputPath><DefineConstants>DEBUG</DefineConstants></PropertyGroup>
+  <ItemGroup><Reference Include="System"/><Reference Include="System.Core"/></ItemGroup>
+  <ItemGroup><Compile Include="Program.cs"/></ItemGroup>
+  <ItemGroup><ProjectReference Include="..\..\src\PCWatch.Core\PCWatch.Core.csproj"><Project>{A5A77E9A-0B9E-4D0E-8D91-2A78A80E9301}</Project><Name>PCWatch.Core</Name></ProjectReference></ItemGroup>
+  <ItemGroup><None Include="packages.config"/></ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
+</Project>
