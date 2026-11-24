@@ -18,7 +18,7 @@
   <ItemGroup>
     <Reference Include="System"/><Reference Include="System.Core"/><Reference Include="System.Drawing"/><Reference Include="System.Management"/><Reference Include="System.Runtime.Serialization"/><Reference Include="System.Windows.Forms"/><Reference Include="System.Xaml"/><Reference Include="System.Xml"/>
     <Reference Include="PresentationCore"/><Reference Include="PresentationFramework"/><Reference Include="WindowsBase"/><Reference Include="UIAutomationTypes"/>
-    <Reference Include="netstandard"/>
+    <Reference Include="netstandard"><HintPath>$(SolutionDir)packages\Microsoft.NETFramework.ReferenceAssemblies.net48.1.0.3\build\.NETFramework\v4.8\Facades\netstandard.dll</HintPath><Private>False</Private></Reference>
     <Reference Include="Microsoft.Diagnostics.Tracing.TraceEvent"><HintPath>$(SolutionDir)packages\Microsoft.Diagnostics.Tracing.TraceEvent.4.0.2\lib\netstandard2.0\Microsoft.Diagnostics.Tracing.TraceEvent.dll</HintPath><Private>True</Private></Reference>
   </ItemGroup>
   <ItemGroup><ApplicationDefinition Include="App.xaml"><Generator>MSBuild:Compile</Generator><SubType>Designer</SubType></ApplicationDefinition></ItemGroup>
