@@ -23,6 +23,7 @@ namespace PCWatch.Core.Tests
             TestRecommendations();
             TestProcessSafety();
             _failures += CleanupTests.Run();
+            _failures += StartupTests.Run();
 
             Console.WriteLine();
             Console.WriteLine(_failures == 0 ? "Все тесты пройдены." : "Провалено тестов: " + _failures);

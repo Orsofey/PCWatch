@@ -66,11 +66,11 @@ if (-not $NoPackage) {
         $native = Join-Path $bin $architecture
         if (Test-Path -LiteralPath $native) { Copy-Item -LiteralPath $native -Destination $portable -Recurse -Force }
     }
-    $zip = Join-Path $artifacts 'release\PCWatch-2.1.0-win.zip'
+    $zip = Join-Path $artifacts 'release\PCWatch-2.2.0-win.zip'
     if (Test-Path -LiteralPath $zip) { Remove-Item -LiteralPath $zip -Force }
     Compress-Archive -Path (Join-Path $portable '*') -DestinationPath $zip -CompressionLevel Optimal
     $hash = Get-FileHash -Algorithm SHA256 -LiteralPath $zip
-    Set-Content -LiteralPath ($zip + '.sha256') -Value ($hash.Hash.ToLowerInvariant() + '  PCWatch-2.1.0-win.zip') -Encoding ascii
+    Set-Content -LiteralPath ($zip + '.sha256') -Value ($hash.Hash.ToLowerInvariant() + '  PCWatch-2.2.0-win.zip') -Encoding ascii
     Write-Host "Portable: $zip"
 }
 Write-Host 'Готово.'

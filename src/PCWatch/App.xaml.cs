@@ -49,6 +49,7 @@ namespace PCWatch
                 _window.Show();
                 OpenWindowsFromArguments(Environment.GetCommandLineArgs());
                 OpenCleanupFromArguments(Environment.GetCommandLineArgs());
+                OpenStartupFromArguments(Environment.GetCommandLineArgs());
             }
             catch (Exception ex)
             {
@@ -104,6 +105,17 @@ namespace PCWatch
                 if (!String.Equals(argument, "--cleanup", StringComparison.OrdinalIgnoreCase)) continue;
                 _viewModel.NavigateCommand.Execute("cleanup");
                 _viewModel.Cleanup.ScanCommand.Execute(null);
+                return;
+            }
+        }
+
+        private void OpenStartupFromArguments(string[] args)
+        {
+            foreach (string argument in args)
+            {
+                if (!String.Equals(argument, "--startup", StringComparison.OrdinalIgnoreCase)) continue;
+                _viewModel.NavigateCommand.Execute("startup");
+                _viewModel.Startup.ScanCommand.Execute(null);
                 return;
             }
         }

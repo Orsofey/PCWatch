@@ -50,6 +50,10 @@
 
 Модель категорий и защита адаптированы из krezio/roomy под C# 5, attribution находится в `THIRD-PARTY-NOTICES.txt` и `licenses/Roomy-LICENSE.txt`.
 
+## Автозапуск
+
+`StartupService` читает Run/RunOnce, Startup folders, автоматические службы и задачи Boot/Logon. Перед удалением записи или перемещением файла создаётся JSON backup в `%LOCALAPPDATA%\PCWatch`; отключённые элементы объединяются со сканом и могут быть восстановлены после перезапуска. Критические службы и системные задачи защищены, текущие процессы не останавливаются. UI работает с копией модели и вызывает операции только после выбора и подтверждения.
+
 ## ETW
 
 `EtwAnalysisService` создаёт уникальную SystemTraceProvider-сессию с `NoRestartOnCreate` и минимально необходимыми keywords:

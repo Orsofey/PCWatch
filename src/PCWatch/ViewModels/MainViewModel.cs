@@ -66,6 +66,7 @@ namespace PCWatch.ViewModels
             Settings = settings;
             IsAdmin = new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator);
             Cleanup = new CleanupViewModel(settings, IsAdmin);
+            Startup = new StartupViewModel();
             Processes = new ObservableCollection<ProcessItemViewModel>();
             TopProcesses = new ObservableCollection<ProcessItemViewModel>();
             Issues = new ObservableCollection<DiagnosticIssue>();
@@ -111,6 +112,7 @@ namespace PCWatch.ViewModels
         public event Action<string, string> NotificationRequested;
         public AppSettings Settings { get; private set; }
         public CleanupViewModel Cleanup { get; private set; }
+        public StartupViewModel Startup { get; private set; }
         public ObservableCollection<ProcessItemViewModel> Processes { get; private set; }
         public ObservableCollection<ProcessItemViewModel> TopProcesses { get; private set; }
         public ObservableCollection<DiagnosticIssue> Issues { get; private set; }
@@ -148,7 +150,7 @@ namespace PCWatch.ViewModels
         public SystemSnapshot Latest { get { return _latest; } private set { Set(ref _latest, value, "Latest"); } }
         public string PageTitle { get { return _pageTitle; } private set { Set(ref _pageTitle, value, "PageTitle"); } }
         public string PageSubtitle { get { return _pageSubtitle; } private set { Set(ref _pageSubtitle, value, "PageSubtitle"); } }
-        public int SelectedPage { get { return _selectedPage; } private set { Set(ref _selectedPage, value, "SelectedPage"); Raise("DashboardVisible"); Raise("ProcessesVisible"); Raise("ResourcesVisible"); Raise("DiagnosticsVisible"); Raise("ReportsVisible"); Raise("SettingsVisible"); Raise("RecommendationsVisible"); Raise("CleanupVisible"); } }
+        public int SelectedPage { get { return _selectedPage; } private set { Set(ref _selectedPage, value, "SelectedPage"); Raise("DashboardVisible"); Raise("ProcessesVisible"); Raise("ResourcesVisible"); Raise("DiagnosticsVisible"); Raise("ReportsVisible"); Raise("SettingsVisible"); Raise("RecommendationsVisible"); Raise("CleanupVisible"); Raise("StartupVisible"); } }
         public Visibility DashboardVisible { get { return SelectedPage == 0 ? Visibility.Visible : Visibility.Collapsed; } }
         public Visibility ProcessesVisible { get { return SelectedPage == 1 ? Visibility.Visible : Visibility.Collapsed; } }
         public Visibility ResourcesVisible { get { return SelectedPage == 2 ? Visibility.Visible : Visibility.Collapsed; } }
@@ -157,6 +159,7 @@ namespace PCWatch.ViewModels
         public Visibility SettingsVisible { get { return SelectedPage == 5 ? Visibility.Visible : Visibility.Collapsed; } }
         public Visibility RecommendationsVisible { get { return SelectedPage == 6 ? Visibility.Visible : Visibility.Collapsed; } }
         public Visibility CleanupVisible { get { return SelectedPage == 7 ? Visibility.Visible : Visibility.Collapsed; } }
+        public Visibility StartupVisible { get { return SelectedPage == 8 ? Visibility.Visible : Visibility.Collapsed; } }
         public string SearchText { get { return _searchText; } set { if (Set(ref _searchText, value, "SearchText")) ProcessesView.Refresh(); } }
         public string SortMode { get { return _sortMode; } set { if (Set(ref _sortMode, value, "SortMode")) ApplySort(); } }
         public ProcessItemViewModel SelectedProcess { get { return _selectedProcess; } set { Set(ref _selectedProcess, value, "SelectedProcess"); } }
@@ -211,6 +214,7 @@ namespace PCWatch.ViewModels
                 case "processes": SelectedPage = 1; PageTitle = "Процессы"; PageSubtitle = "Нагрузка приложений и безопасное управление процессами"; break;
                 case "recommendations": SelectedPage = 6; PageTitle = "Оптимизация"; PageSubtitle = "Обоснованные кандидаты на закрытие и способы освободить ресурсы"; break;
                 case "cleanup": SelectedPage = 7; PageTitle = "Очистка диска"; PageSubtitle = "Безопасное сканирование, прозрачный выбор и очистка с подтверждением"; break;
+                case "startup": SelectedPage = 8; PageTitle = "Автозапуск"; PageSubtitle = "Поиск, отключение и восстановление программ в автозагрузке"; break;
                 case "resources": SelectedPage = 2; PageTitle = "Ресурсы"; PageSubtitle = "Процессор, память, диски, видеокарта и сеть"; break;
                 case "diagnostics": SelectedPage = 3; PageTitle = "Диагностика"; PageSubtitle = "DPC, ISR, драйверы и отзывчивость ядра через ETW"; break;
                 case "reports": SelectedPage = 4; PageTitle = "Отчёты"; PageSubtitle = "Заключение, доказательства и рекомендации по системе"; break;

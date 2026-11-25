@@ -16,8 +16,8 @@ jobs:
       - name: Upload portable ZIP
         uses: actions/upload-artifact@v4
         with:
-          name: PCWatch-2.1.0
+          name: PCWatch-2.2.0
           path: |
-            artifacts/release/PCWatch-2.1.0-win.zip
-            artifacts/release/PCWatch-2.1.0-win.zip.sha256
+            artifacts/release/PCWatch-2.2.0-win.zip
+            artifacts/release/PCWatch-2.2.0-win.zip.sha256
           if-no-files-found: error

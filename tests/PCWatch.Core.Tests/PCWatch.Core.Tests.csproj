@@ -4,7 +4,7 @@
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' "><Optimize>true</Optimize><OutputPath>bin\Release\</OutputPath></PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' "><Optimize>false</Optimize><OutputPath>bin\Debug\</OutputPath><DefineConstants>DEBUG</DefineConstants></PropertyGroup>
   <ItemGroup><Reference Include="System"/><Reference Include="System.Core"/></ItemGroup>
-  <ItemGroup><Compile Include="Program.cs"/><Compile Include="CleanupTests.cs"/></ItemGroup>
+  <ItemGroup><Compile Include="Program.cs"/><Compile Include="CleanupTests.cs"/><Compile Include="StartupTests.cs"/></ItemGroup>
   <ItemGroup><ProjectReference Include="..\..\src\PCWatch.Core\PCWatch.Core.csproj"><Project>{A5A77E9A-0B9E-4D0E-8D91-2A78A80E9301}</Project><Name>PCWatch.Core</Name></ProjectReference></ItemGroup>
   <ItemGroup><None Include="packages.config"/></ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
