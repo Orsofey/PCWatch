@@ -188,7 +188,12 @@ namespace PCWatch.Core
                         foreach (XmlNode trigger in triggers)
                             if (trigger.LocalName != "BootTrigger" && trigger.LocalName != "LogonTrigger") { hasOtherTriggers = true; break; }
                     if (hasOtherTriggers) { item.CanToggle = false; item.ProtectionReason = "У задачи есть дополнительные триггеры"; }
-                    if (!enabled) { item.CanToggle = false; item.ProtectionReason = "Отключено до PCWatch"; }
+                    if (!enabled)
+                    {
+                        StartupBackup persisted = FindBackup(item.Id);
+                        if (persisted != null) { item.Backup = persisted; item.CanToggle = true; item.ProtectionReason = ""; }
+                        else { item.CanToggle = false; item.ProtectionReason = "Отключено до PCWatch"; }
+                    }
                     if (requiresAdmin) { item.CanToggle = false; item.ProtectionReason = "Системная задача Microsoft"; }
                     result.Add(item);
                 }
@@ -379,7 +384,16 @@ namespace PCWatch.Core
         {
             ProcessOutput output = RunProcess("schtasks.exe", "/Query /TN \"" + taskName.Replace("\"", "") + "\" /XML", Encoding.UTF8);
             if (output.ExitCode != 0) throw new InvalidOperationException("Не удалось проверить состояние задачи: " + output.Text);
-            return output.Text.IndexOf("<Enabled>true</Enabled>", StringComparison.OrdinalIgnoreCase) >= 0;
+            foreach (System.Text.RegularExpressions.Match match in System.Text.RegularExpressions.Regex.Matches(output.Text, "<Task\\b[\\s\\S]*?</Task>"))
+            {
+                XmlDocument document = new XmlDocument();
+                document.LoadXml(match.Value);
+                XmlNamespaceManager namespaces = new XmlNamespaceManager(document.NameTable);
+                namespaces.AddNamespace("n", "http://schemas.microsoft.com/windows/2004/02/mit/task");
+                XmlNode enabled = document.DocumentElement.SelectSingleNode("n:Settings/n:Enabled", namespaces);
+                if (enabled != null) return String.Equals(enabled.InnerText, "true", StringComparison.OrdinalIgnoreCase);
+            }
+            throw new InvalidOperationException("Состояние Enabled в XML задачи не найдено");
         }
 
         private static void ValidateToggle(StartupItem item)
@@ -422,15 +436,9 @@ namespace PCWatch.Core
         {
             if (!File.Exists(_backupFile)) return new List<StartupBackup>();
             try { return ReadBackupFile(_backupFile); }
-            catch (Exception originalError)
+            catch (Exception error)
             {
-                string previous = _backupFile + ".previous";
-                if (File.Exists(previous))
-                {
-                    try { return ReadBackupFile(previous); }
-                    catch (Exception previousError) { throw new InvalidDataException("Резервная копия автозапуска повреждена. Изменения отменены.", previousError); }
-                }
-                throw new InvalidDataException("Резервная копия автозапуска повреждена. Изменения отменены.", originalError);
+                throw new InvalidDataException("Резервная копия автозапуска повреждена. Изменения отменены. Для ручного восстановления используйте startup-backup.previous.json.", error);
             }
         }
 
@@ -467,9 +475,8 @@ namespace PCWatch.Core
                 new DataContractJsonSerializer(typeof(List<StartupBackup>)).WriteObject(stream, backups);
                 stream.Flush(true);
             }
-            if (File.Exists(_backupFile)) File.Copy(_backupFile, previous, true);
-            File.Copy(temporary, _backupFile, true);
-            File.Delete(temporary);
+            if (File.Exists(_backupFile)) File.Replace(temporary, _backupFile, previous);
+            else File.Move(temporary, _backupFile);
         }
 
         private static string ResolveShortcut(string path)

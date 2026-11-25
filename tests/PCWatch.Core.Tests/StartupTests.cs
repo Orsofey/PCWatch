@@ -130,6 +130,7 @@ namespace PCWatch.Core.Tests
             StartupItem item = Find(service.Scan(), startupFolder, "First.bat");
             if (item == null) { Check("Автозапуск: подготовка повреждения копии", false); return; }
             service.Disable(item);
+            File.Copy(backupFile, backupFile + ".previous", true);
             File.WriteAllText(backupFile, "not-json");
             bool blocked = false;
             try
